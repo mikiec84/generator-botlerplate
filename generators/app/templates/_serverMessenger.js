@@ -23,6 +23,7 @@ const myBot = new Bot({
 })
 
 <% if (example === 'yes') { %>
+// Register all actions in our bot
 myBot.registerActions(_.values(actions)) <% } %>
 
 <% if (mongo === 'yes') { %>
