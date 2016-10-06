@@ -1,5 +1,5 @@
 module.exports = {
-	name: <%= name %>, <% if (mongo) { %>
+	name: <%= name %>, <% if (mongo === 'yes') { %>
   database: {
     host: '',
     port: '27017',

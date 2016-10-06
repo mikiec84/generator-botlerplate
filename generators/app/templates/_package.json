@@ -32,14 +32,15 @@
 		"eslint-plugin-import": "^1.16.0",
 		"nodemon": "^1.10.2"
 	},
-	"dependencies": { <% if (mongo) { %>
+	"dependencies": { <% if (mongo === 'yes') { %>
 		"mongoose": "^4.6.1", <% } %> <% if (server === 'microsoft bot connector') { %>
 		"botbuilder": "^3.1.1",
 		"express": "^4.14.0",<% } %> <% if (server === 'kik') { %>
 		"@kikinteractive/kik": "^2.0.10", <% } %>	<% if (server === 'slack') { %>
 		"@slack/client": "^3.6.0", <% } %> <% if (server === 'messenger') { %>
 		"body-parser": "^1.15.2",
-	  "express": "^4.14.0", <% } %>
-		"lodash": "^4.16.2"
+	  "express": "^4.14.0", <% } %> <% if (example === 'yes') { %>
+		"lodash": "^4.16.2",
+		"require-all": "^2.0.0"<% } %>
 	}
 }

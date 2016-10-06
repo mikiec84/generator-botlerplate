@@ -1,1 +1,5 @@
 node_modules
+if (that.props.example === 'yes') {
+  that.spawnCommand('npm', ['install', '--save', 'require-all'])
+  that.spawnCommand('npm', ['install', '--save', 'lodash'])
+}
