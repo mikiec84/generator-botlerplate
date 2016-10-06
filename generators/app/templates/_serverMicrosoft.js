@@ -1,7 +1,7 @@
 import express from 'express'
 import builder from 'botbuilder' <% if (sources === 'sources') { %>
 import Bot from './core/bot' <% } else { %>
-import { Bot } from 'botlerplate' <% } %> <% if (example) { %>
+import { Bot } from 'botlerplate' <% } %> <% if (example === 'yes') { %>
 import requireAll from 'require-all'
 import _ from 'lodash'
 const actions = requireAll(`${__dirname}/actions`) <% } %>
@@ -22,10 +22,10 @@ const myBot = new Bot({
   // language: 'en',
 })
 
-<% if (example) { %>
+<% if (example === 'yes') { %>
 myBot.registerActions(_.values(actions)) <% } %>
 
-<% if (mongo) { %>
+<% if (mongo === 'yes') { %>
 // DATABASE INITIALIZATION
 bot.useMongo(config.database) <% } %>
 
