@@ -1,10 +1,12 @@
  <% if (sources === 'module') { %>
-import Bot from 'botlerplate' <% } %>
-   <% if (sources === 'sources') { %>
-import Bot from './core/bot' <% } %>
+import Bot from 'botlerplate'
+import actions from '../action/greetings' <% } %> <% if (sources === 'sources') { %>
+import Bot from './core/bot'
+ import requireAll from 'require-all' <% } %>
 import config from '../config'
 import slack from '@slack/client'
-
+<% if (sources === 'sources') { %>
+const actions = requireAll(`${__dirname}/actions`) <% } %>
 const SlackClient = slack.RtmClient
 const slackEvent = slack.RTM_EVENTS
 const rtm = new SlackClient(config.slack.token, { logLevel: 'false' })
@@ -28,10 +30,9 @@ const myBot = new Bot({
 <% if (mongo) { %>
   myBot.useDatabase(config.database) <% } %>
 
-
 /** boucle principale (slack/facebook/whatever) **/
 myBot.reply(text, IdConversation).then(replies => {
-  responses.forEach(reply => {
-    rtm.sendMessage(reply)
+  response.forEach(reply => {
+    rtm.sendMessage(reply, dm)
   })
 })
