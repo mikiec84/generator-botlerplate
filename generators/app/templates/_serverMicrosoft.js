@@ -1,9 +1,13 @@
 import express from 'express'
-import builder from 'botbuilder' <% if (sources) { %>
+import builder from 'botbuilder' <% if (sources === 'sources') { %>
 import Bot from './core/bot' <% } else { %>
-import { Bot } from 'botlerplate' <% } %>
-import Greetings from './actions/greetings'
-import config from './config'
+import { Bot } from 'botlerplate' <% } %> <% if (example) { %>
+import requireAll from 'require-all'
+import _ from 'lodash'
+const actions = requireAll(`${__dirname}/actions`) <% } %>
+
+
+import config from '../config'
 
 const recastToken = ''
 
@@ -18,12 +22,12 @@ const myBot = new Bot({
   // language: 'en',
 })
 
-myBot.registerActions([Greetings])
+<% if (example) { %>
+myBot.registerActions(_.values(actions)) <% } %>
 
 <% if (mongo) { %>
 // DATABASE INITIALIZATION
-bot.useMongo(config.database)
-<% } %>
+bot.useMongo(config.database) <% } %>
 
 // CONNECTION TO MICROSOFT BOT
 const connector = new builder.ChatConnector({
@@ -40,7 +44,7 @@ microsoftBot.dialog('/', session => {
   // It will be used by to identify each conversation with a user
   const conversationId = session.message.address.conversation.id
 
-  // Token and landuage can laso be passed as arguments to reply
+  // Token and language can laso be passed as arguments to reply
   myBot.reply(text, conversationId, {}).then(replies => {
     replies.forEach(reply => {
       session.send(reply)
@@ -50,3 +54,7 @@ microsoftBot.dialog('/', session => {
     session.send('Oops, I got a problem.')
   })
 })
+
+const server = express()
+server.listen(process.env.PORT || config.port || 8080)
+server.post('/', connector.listen())

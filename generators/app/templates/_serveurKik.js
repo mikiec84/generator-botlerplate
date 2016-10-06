@@ -1,13 +1,32 @@
-<% if (sources === 'module') { %>
-import Bot from 'botlerplate'
-import actions from '../action/greetings' <% } %> <% if (sources === 'sources') { %>
-import Bot from './core/bot'
-import requireAll from 'require-all' <% } %>
-import config from '../config'
-import slack from '@kikinteractive/kik'
-<% if (sources === 'sources') { %>
+import Kik from '@kikinteractive/kik'
+import http from 'http' <% if (sources === 'sources') { %>
+import Bot from './core/bot' <% } else { %>
+import { Bot } from 'botlerplate' <% } %> <% if (example) { %>
+import requireAll from 'require-all'
+import _ from 'lodash'
 const actions = requireAll(`${__dirname}/actions`) <% } %>
-import http from 'http'
+
+import config from '../config'
+
+const recastToken = ''
+
+// RECAST BOT INSTANCE
+// A language can be provided in the constructor
+const myBot = new Bot({
+  token: recastToken || process.env.TOKEN || process.argv[2],
+  notIntent: {
+    en: ['Sorry but I don\'t understand.'],
+    fr: ['Desole mais je ne comprends pas.'],
+  },
+  // language: 'en',
+})
+
+<% if (example) { %>
+myBot.registerActions(_.values(actions)) <% } %>
+
+<% if (mongo) { %>
+// DATABASE INITIALIZATION
+bot.useMongo(config.database) <% } %>
 
 const bot = new Kik({
   username: config.kik.username,
@@ -17,29 +36,25 @@ const bot = new Kik({
 
 bot.updateBotConfiguration()
 
-bot.onTextMessage((message) => {
-})
+bot.onTextMessage(message => {
+  // User input
+  const text = message.body
 
-const recastToken = '' || process.env.TOKEN || process.argv[2]
+  // User's conversation unique id
+  // It will be used by to identify each conversation with a user
+  const conversationId = message.chatid
 
-const myBot = new Bot({
-  token: recastToken,
-  noIntent: {
-    en: ['I don\'t understand!'],
-    fr: ['Je ne comprend pas'],
-  },
-})
-
-<% if (mongo) { %>
-  myBot.useDatabase(config.database) <% } %>
-
-/** boucle principale (slack/facebook/whatever) **/
-myBot.reply(text, IdConversation).then(replies => {
-  res.replies.forEach(rep => {
-    message.res.reply(rep)
+  // Token and language can laso be passed as arguments to reply
+  myBot.reply(text, conversationId, {}).then(replies => {
+    replies.forEach(reply => {
+      session.send(reply)
+    })
+  }).catch(err => {
+    console.log(`An error occured: ${err}`)
+    session.send('Oops, I got a problem.')
   })
 })
 
 let server = http
 .createServer(bot.incoming())
-.listen(process.env.PORT || 8080)
+.listen(process.env.PORT || config.port || 8080)
