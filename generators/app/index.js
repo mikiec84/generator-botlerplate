@@ -23,20 +23,20 @@ module.exports = generators.Base.extend({
       message: 'Would you like to to use sources or module of botlerplate?',
       choices: ['sources', 'module'],
     }, {
-      type: 'confirm',
+      type: 'list',
       name: 'mongo',
       message: 'Would you like to enable mongodb?',
-      default: false,
+      choices: ['yes', 'no'],
     }, {
       type: 'list',
       name: 'server',
-      message: 'Would you like to use microsoft bot connector ?',
+      message: 'What connector you want use?',
       choices: ['microsoft bot connector', 'slack', 'messenger', 'kik', 'none'],
     }, {
       type: 'list',
-      name: 'test',
-      message: 'Would you like to use ava or mocka for testing?',
-      choices: ['ava', 'mocka', 'none'],
+      name: 'example',
+      message: 'Would you like to use the first bot of recast for starting?',
+      choices: ['yes', 'no'],
     }]
 
     return this.prompt(prompts).then(function (props) {
@@ -55,86 +55,89 @@ module.exports = generators.Base.extend({
             server: this.props.server,
             mongo: this.props.mongo,
             sources: this.props.sources,
+            example: this.props.example,
           })
-      }
-      if (this.props.sources === 'module') {
-        this.fs.copyTpl(
-          this.templatePath('_config.js'),
-          this.destinationPath(`./${this.props.name}/config.js`), {
-            name: this.props.name,
-            server: this.props.server,
-            mongo: this.props.mongo,
-            sources: this.props.sources,
-          })
-      }
-    },
-    app: function () {
-      var that = this
-      var tplName = ''
-
-      if (this.props.sources === 'sources') {
-        this.spawnCommand('git', ['clone', 'https://github.com/RecastAI/botlerplate.git', this.props.name])
-          .on('close', function () {
-            var npmdir = process.cwd() + `/${that.props.name}`
-            process.chdir(npmdir)
-            if (that.props.server === 'slack') {
-              that.spawnCommand('npm', ['install', '--save', '@slack/client'])
-            } else if (that.props.server === 'kik') {
-              that.spawnCommand('npm', ['install', '--save', '@kikinteractive/kik'])
-            } else if (that.props.server === 'microsoft bot connector') {
-              that.spawnCommand('npm', ['install', '--save', 'express'])
-              that.spawnCommand('npm', ['install', '--save', 'botbuilder'])
-            } else if (that.props.server === 'messenger') {
-              that.spawnCommand('npm', ['install', '--save', 'express'])
-              that.spawnCommand('npm', ['install', '--save', 'body-parser'])
-            }
-          })
-      }
-      switch (this.props.server) {
-        case 'microsoft bot connector':
-          tplName = '_serverMicrosoft.js'
-          break
-        case 'slack':
-          tplName = '_serverSlack.js'
-          break
-        case 'messenger':
-          tplName = '_serverMessenger.js'
-          break
-        case 'kik':
-          tplName = '_serverKik.js'
-          break
-        default:
-          tplName = '_server.js'
-          break
-      }
-      this.fs.copyTpl(
-        this.templatePath(tplName),
-        this.destinationPath(`./${this.props.name}/server.js`), {
-          name: this.props.name,
-          server: this.props.server,
-          mongo: this.props.mongo,
-          sources: this.props.sources,
         }
-      )
-      if (this.props.sources === 'module') {
-        this.fs.copyTpl(
-          this.templatePath('_greetings.js'),
-          this.destinationPath(`./${this.props.name}/actions/greeting.js`), {
-            name: this.props.name,
-            server: this.props.server,
-            mongo: this.props.mongo,
-            sources: this.props.sources,
+        if (this.props.sources === 'module') {
+          this.fs.copyTpl(
+            this.templatePath('_config.js'),
+            this.destinationPath(`./${this.props.name}/config.js`), {
+              name: this.props.name,
+              server: this.props.server,
+              mongo: this.props.mongo,
+              sources: this.props.sources,
+              example: this.props.example,
+            })
           }
-        )
-      }
-    },
-  },
+        },
+        app: function () {
+          var that = this
+          var tplName = ''
 
-  install: function () {
-    this.installDependencies({ bower: false })
-    // if (this.props.sources === 'sourssces') {
-    //   this.spawnCommand('git', ['clone', 'https://github.com/RecastAI/botlerplate.git', this.props.name])
-    // var npmdir = process.cwd() + `/botlerplate`
-    // process.chdir(npmdir);
-  },
-})
+          if (this.props.sources === 'sources') {
+            this.spawnCommand('git', ['clone', 'https://github.com/RecastAI/botlerplate.git', this.props.name])
+            .on('close', function () {
+              var npmdir = process.cwd() + `/${that.props.name}`
+              process.chdir(npmdir)
+              if (that.props.server === 'slack') {
+                that.spawnCommand('npm', ['install', '--save', '@slack/client'])
+              } else if (that.props.server === 'kik') {
+                that.spawnCommand('npm', ['install', '--save', '@kikinteractive/kik'])
+              } else if (that.props.server === 'microsoft bot connector') {
+                that.spawnCommand('npm', ['install', '--save', 'express'])
+                that.spawnCommand('npm', ['install', '--save', 'botbuilder'])
+              } else if (that.props.server === 'messenger') {
+                that.spawnCommand('npm', ['install', '--save', 'express'])
+                that.spawnCommand('npm', ['install', '--save', 'body-parser'])
+                that.spawnCommand('npm', ['install', '--save', 'request'])
+              }
+            })
+          }
+          switch (this.props.server) {
+            case 'microsoft bot connector':
+            tplName = '_serverMicrosoft.js'
+            break
+            case 'slack':
+            tplName = '_serverSlack.js'
+            break
+            case 'messenger':
+            tplName = '_serverMessenger.js'
+            break
+            case 'kik':
+            tplName = '_serverKik.js'
+            break
+            default:
+            tplName = '_server.js'
+            break
+          }
+          this.fs.copyTpl(
+            this.templatePath(tplName),
+            this.destinationPath(`./${this.props.name}/server.js`), {
+              name: this.props.name,
+              server: this.props.server,
+              mongo: this.props.mongo,
+              sources: this.props.sources,
+              example: this.props.example,
+            }
+          )
+          if (this.props.sources === 'module') {
+            this.fs.copyTpl(
+              this.templatePath('_greetings.js'),
+              this.destinationPath(`./${this.props.name}/actions/greeting.js`), {
+                name: this.props.name,
+                server: this.props.server,
+                mongo: this.props.mongo,
+                sources: this.props.sources,
+                example: this.props.example,
+              }
+            )
+          }
+        },
+      },
+
+      install: function () {
+        var npmdir = process.cwd() + `/${this.props.name}`
+        process.chdir(npmdir);
+        this.installDependencies({ bower: false })
+      },
+    })

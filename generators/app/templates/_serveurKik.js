@@ -30,7 +30,7 @@ const myBot = new Bot({
   },
 })
 
-<% if (mongo) { %>
+<% if (mongo === 'yes') { %>
   myBot.useDatabase(config.database) <% } %>
 
 /** boucle principale (slack/facebook/whatever) **/
