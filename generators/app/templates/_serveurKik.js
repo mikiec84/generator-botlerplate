@@ -1,10 +1,13 @@
-import {Client} from 'recastai'
-import Kik from '@kikinteractive/kik'
+<% if (sources === 'module') { %>
+import Bot from 'botlerplate'
+import actions from '../action/greetings' <% } %> <% if (sources === 'sources') { %>
+import Bot from './core/bot'
+import requireAll from 'require-all' <% } %>
+import config from '../config'
+import slack from '@kikinteractive/kik'
+<% if (sources === 'sources') { %>
+const actions = requireAll(`${__dirname}/actions`) <% } %>
 import http from 'http'
-import config from './config.js'
-
-
-const client = new Client(config.recast.request_token, config.recast.language)
 
 const bot = new Kik({
   username: config.kik.username,
@@ -12,22 +15,28 @@ const bot = new Kik({
   baseUrl: config.kik.baseUrl,
 })
 
-
 bot.updateBotConfiguration()
 
 bot.onTextMessage((message) => {
-  client.textRequest(message.body)
-  .then((res) => {
-    console.log('test')
-    const intent = res.intent()
-    console.log(intent)
-    if (intent.slug === undefined) {
-      message.reply('no intent match')
-    } else {
-      message.reply(intent.slug)
-    }
-  }).catch((err) => {
-    console.log(err)
+})
+
+const recastToken = '' || process.env.TOKEN || process.argv[2]
+
+const myBot = new Bot({
+  token: recastToken,
+  noIntent: {
+    en: ['I don\'t understand!'],
+    fr: ['Je ne comprend pas'],
+  },
+})
+
+<% if (mongo) { %>
+  myBot.useDatabase(config.database) <% } %>
+
+/** boucle principale (slack/facebook/whatever) **/
+myBot.reply(text, IdConversation).then(replies => {
+  res.replies.forEach(rep => {
+    message.res.reply(rep)
   })
 })
 

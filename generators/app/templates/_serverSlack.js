@@ -1,9 +1,21 @@
  <% if (sources === 'module') { %>
-import Bot from 'botlerplate' <% } %>
-   <% if (sources === 'sources') { %>
-import Bot from './core/bot' <% } %>
-
+import Bot from 'botlerplate'
+import actions from '../action/greetings' <% } %> <% if (sources === 'sources') { %>
+import Bot from './core/bot'
+ import requireAll from 'require-all' <% } %>
 import config from '../config'
+import slack from '@slack/client'
+<% if (sources === 'sources') { %>
+const actions = requireAll(`${__dirname}/actions`) <% } %>
+const SlackClient = slack.RtmClient
+const slackEvent = slack.RTM_EVENTS
+const rtm = new SlackClient(config.slack.token, { logLevel: 'false' })
+rtm.start()
+
+rtm.on(slackEvent.MESSAGE, (message) => {
+  const user = rtm.dataStore.getUserById(message.user)
+  const dm = rtm.dataStore.getDMByName(user.name).id
+})
 
 const recastToken = '' || process.env.TOKEN || process.argv[2]
 
@@ -18,10 +30,9 @@ const myBot = new Bot({
 <% if (mongo) { %>
   myBot.useDatabase(config.database) <% } %>
 
-
 /** boucle principale (slack/facebook/whatever) **/
-myBot.reply(text, IDDeLaConversation).then(replies => {
-  responses.forEach(reply => {
-    envoyerLaResponseAuChannel(reply)
+myBot.reply(text, IdConversation).then(replies => {
+  response.forEach(reply => {
+    rtm.sendMessage(reply, dm)
   })
 })
