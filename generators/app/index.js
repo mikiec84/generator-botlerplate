@@ -77,7 +77,7 @@ module.exports = generators.Base.extend({
           if (this.props.sources === 'sources') {
             this.spawnCommand('git', ['clone', 'https://github.com/RecastAI/botlerplate.git', this.props.name])
             .on('close', function () {
-              var npmdir = process.cwd() + `/${that.props.name}`
+              var npmdir = process.cwd()// + '/' + that.props.name
               process.chdir(npmdir)
               if (that.props.server === 'slack') {
                 that.spawnCommand('npm', ['install', '--save', '@slack/client'])
@@ -95,24 +95,24 @@ module.exports = generators.Base.extend({
           }
           switch (this.props.server) {
             case 'microsoft bot connector':
-            tplName = '_serverMicrosoft.js'
-            break
+              tplName = '_serverMicrosoft.js'
+              break
             case 'slack':
-            tplName = '_serverSlack.js'
-            break
+              tplName = '_serverSlack.js'
+              break
             case 'messenger':
-            tplName = '_serverMessenger.js'
-            break
+              tplName = '_serverMessenger.js'
+              break
             case 'kik':
-            tplName = '_serverKik.js'
-            break
+              tplName = '_serverKik.js'
+              break
             default:
-            tplName = '_server.js'
-            break
+              tplName = '_server.js'
+              break
           }
           this.fs.copyTpl(
             this.templatePath(tplName),
-            this.destinationPath(`./${this.props.name}/server.js`), {
+            this.destinationPath(`./${this.props.name}/src/server.js`), {
               name: this.props.name,
               server: this.props.server,
               mongo: this.props.mongo,
@@ -120,10 +120,50 @@ module.exports = generators.Base.extend({
               example: this.props.example,
             }
           )
-          if (this.props.sources === 'module') {
+          if (this.props.example === 'yes') {
             this.fs.copyTpl(
-              this.templatePath('_greetings.js'),
-              this.destinationPath(`./${this.props.name}/actions/greeting.js`), {
+              this.templatePath('_actions/_greetings.js'),
+              this.destinationPath(`./${this.props.name}/src/actions/greeting.js`), {
+                name: this.props.name,
+                server: this.props.server,
+                mongo: this.props.mongo,
+                sources: this.props.sources,
+                example: this.props.example,
+              }
+            )
+            this.fs.copyTpl(
+              this.templatePath('_actions/_booking.js'),
+              this.destinationPath(`./${this.props.name}/src/actions/booking.js`), {
+                name: this.props.name,
+                server: this.props.server,
+                mongo: this.props.mongo,
+                sources: this.props.sources,
+                example: this.props.example,
+              }
+            )
+            this.fs.copyTpl(
+              this.templatePath('_actions/_information.js'),
+              this.destinationPath(`./${this.props.name}/src/actions/information.js`), {
+                name: this.props.name,
+                server: this.props.server,
+                mongo: this.props.mongo,
+                sources: this.props.sources,
+                example: this.props.example,
+              }
+            )
+            this.fs.copyTpl(
+              this.templatePath('_actions/_yes.js'),
+              this.destinationPath(`./${this.props.name}/src/actions/yes.js`), {
+                name: this.props.name,
+                server: this.props.server,
+                mongo: this.props.mongo,
+                sources: this.props.sources,
+                example: this.props.example,
+              }
+            )
+            this.fs.copyTpl(
+              this.templatePath('_actions/_no.js'),
+              this.destinationPath(`./${this.props.name}/src/actions/no.js`), {
                 name: this.props.name,
                 server: this.props.server,
                 mongo: this.props.mongo,

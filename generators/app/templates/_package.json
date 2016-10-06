@@ -38,9 +38,10 @@
 		"express": "^4.14.0",<% } %> <% if (server === 'kik') { %>
 		"@kikinteractive/kik": "^2.0.10", <% } %>	<% if (server === 'slack') { %>
 		"@slack/client": "^3.6.0", <% } %> <% if (server === 'messenger') { %>
+		"request": "^2.75.0",
 		"body-parser": "^1.15.2",
-	  "express": "^4.14.0", <% } %> <% if (example === 'yes') { %>
-		"lodash": "^4.16.2",
-		"require-all": "^2.0.0"<% } %>
+		"express": "^4.14.0", <% } %> <% if (example === 'yes') { %>
+		"require-all": "^2.0.0", <% } %>
+		"lodash": "^4.16.2"
 	}
 }
