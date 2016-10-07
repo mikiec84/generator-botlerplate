@@ -37,7 +37,7 @@ server.set('port', process.env.PORT || config.port || 8080)
 function sendMessage(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: config.pageAccessToken },
+    qs: { access_token: config.messenger.pageAccessToken },
     method: 'POST',
     json: messageData,
   }, (error, response) => {
@@ -89,11 +89,12 @@ app.post('/webhook', (req, res) => {
       pageEntry.messaging.forEach(messagingEvent => {
         if (messagingEvent.message) {
           // User input
-          const text = evetn.message.text
+          const text = event.message.text
 
           // User's conversation unique id
           // It will be used by to identify each conversation with a user
           const conversationId = event.sender.id
+
           myBot.reply(text, conversationId, {}).then(replies => {
             replies.forEach(reply => {
               replyMessage(conversationId, reply)

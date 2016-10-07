@@ -9,5 +9,20 @@ module.exports = {
   microsoft: {
     appId: '',
     appSecret: '',
-  }, <% } %>
+  }, <% } %> <% if (server === 'kik') { %>
+  kik: {
+    username: '',
+    apiKey: '',
+    baseUrl: '',
+  }, <% } %> <% if (server === 'messenger') { %>
+  messenger: {
+    pageAccessToken: '',
+    validationToken: '',
+  }, <% } %> <% if (server === 'slack') { %>
+  slack: {
+    token: '',
+  },
+     <% } %>
+
+
 }
