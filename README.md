@@ -106,6 +106,8 @@ npm run server: run the server for development (with live reload)
 <br />
 npm run build: builds all the from es6 to es5
 <br />
+npm run emulator: test your bot on your terminal
+<br />
 <br />
 ## More
 
