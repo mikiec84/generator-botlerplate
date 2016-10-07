@@ -1,4 +1,5 @@
 module.exports = {<% if (mongo === 'yes') { %>
+  recastToken: '',
   database: {
     name: '',
     hostname: '',
