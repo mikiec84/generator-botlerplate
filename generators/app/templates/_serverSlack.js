@@ -1,9 +1,9 @@
 import slack from '@slack/client' <% if (sources === 'sources') { %>
 import Bot from './core/bot' <% } else { %>
-import { Bot } from 'botlerplate' <% } %> <% if (example === 'yes') { %>
+import { Bot } from 'botlerplate' <% } %>
 import requireAll from 'require-all'
 import _ from 'lodash'
-const actions = requireAll(`${__dirname}/actions`) <% } %>
+const actions = requireAll(`${__dirname}/actions`)
 
 import config from '../config'
 
@@ -19,9 +19,9 @@ const myBot = new Bot({
   },
   // language: 'en',
 })
-<% if (example === 'yes') { %>
+
 // Register all actions in our bot
-myBot.registerActions(_.values(actions)) <% } %>
+myBot.registerActions(_.values(actions))
 
 <% if (mongo === 'yes') { %>
 // DATABASE INITIALIZATION
