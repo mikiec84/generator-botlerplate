@@ -10,6 +10,12 @@ module.exports = generators.Base.extend({
     generators.Base.apply(this, arguments)
   },
   prompting: function () {
+    console.log(' _____                    _              _____ ')
+    console.log('|  __ \\                  | |       /\\   |_   _|')
+    console.log('| |__) |___  ___ __ _ ___| |_     /  \\    | |  ')
+    console.log('|  _  // _ \\/ __/ _` / __| __|   / /\\ \\   | |  ')
+    console.log('| | \\ \\  __/ (_| (_| \\__ \\ |_ _ / ____ \\ _| |_ ')
+    console.log('|_|  \\_\\___|\\___\\__,_|___/\\__(_)_/    \\_\\_____|')
     // Have Yeoman greet the user.
     this.log('Welcome to the ' + chalk.yellow('Recast.AI Botlerplate') + ' generator!')
 

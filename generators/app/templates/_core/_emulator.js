@@ -1,6 +1,6 @@
 import readline from 'readline'
-import _ from 'lodash'
-import mongoose from 'mongoose'
+import _ from 'lodash'<% if (mongo) { %>
+import mongoose from 'mongoose' <% } %>
 import requireAll from 'require-all'<% if (sources === 'sources') { %>
 import Bot from './bot'<% } else { %>
 import { Bot } from 'botlerplate' <% } %>
@@ -15,7 +15,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 })
 
-const token = recastToken || process.env.TOKEN || process.argv[2]
+const token = recastToken || config.recastToken || process.env.TOKEN || process.argv[2]
 
 const bot = new Bot({
   token,
@@ -26,9 +26,8 @@ const bot = new Bot({
 
 bot.registerActions(_.values(actions))
 
-if (process.argv.indexOf('--db') !== -1) {
-  bot.useDatabase(config.database)
-}
+<% if (mongo) { %>
+bot.useDatabase(config.database) <% } %>
 
 process.stdin.setEncoding('utf8')
 
@@ -39,8 +38,8 @@ const conversId = Math.floor((Math.random() * 1000) + 1).toString()
 console.log()
 process.stdout.write('> ')
 
-rl.on('SIGINT', () => {
-  mongoose.connection.close()
+rl.on('SIGINT', () => { <% if (mongo) { %>
+  mongoose.connection.close() <% } %>
   rl.close()
 })
 
