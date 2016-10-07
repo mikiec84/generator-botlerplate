@@ -1,5 +1,5 @@
 import express from 'express'
-import bodyParser from 'bodyParser'
+import bodyParser from 'body-parser'
 import request from 'request'
 <% if (sources === 'sources') { %>
 import Bot from './core/bot' <% } else { %>
@@ -30,9 +30,9 @@ myBot.registerActions(_.values(actions)) <% } %>
 // DATABASE INITIALIZATION
 myBot.useDatabase(config.database) <% } %>
 
-const server = express()
-server.use(bodyParser.json())
-server.set('port', process.env.PORT || config.port || 8080)
+const app = express()
+app.use(bodyParser.json())
+app.set('port', process.env.PORT || config.port || 8080)
 
 function sendMessage(messageData) {
   request({
@@ -69,7 +69,7 @@ function replyMessage(recipientId, messageText) {
 
 app.get('/webhook', (req, res) => {
   if (req.query['hub.mode'] === 'subscribe' &&
-  req.query['hub.verify_token'] === facebookConfig.validationToken) {
+  req.query['hub.verify_token'] === config.messenger.validationToken) {
     console.log('Validating webhook')
     res.status(200).send(req.query['hub.challenge'])
   } else {
@@ -99,6 +99,9 @@ app.post('/webhook', (req, res) => {
             replies.forEach(reply => {
               replyMessage(conversationId, reply)
             })
+          }).catch(err => {
+            console.log(`An error occured: ${err}`)
+            session.send('Oops, I got a problem.')
           })
         }
       })
@@ -108,4 +111,5 @@ app.post('/webhook', (req, res) => {
 })
 
 app.listen(app.get('port'), () => {
-console.log('Our bot is running on port', app.get('port'))
+  console.log('Our bot is running on port', app.get('port'))
+})
