@@ -113,7 +113,7 @@ npm start: builds and run the server,
 npm run server: run the server for development (with live reload)
 
 
-npm run build: builds all the from es6 to es5
+npm run build: builds all the sources from es6 to es5
 
 
 npm run emulator: test your bot on your terminal
