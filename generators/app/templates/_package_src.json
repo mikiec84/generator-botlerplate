@@ -4,9 +4,10 @@
   "description": "",
   "main": "build/server.js",
   "scripts": {
-    "build": "babel src -d build",
-    "lint": "eslint src",
-    "emulator": "babel-node ./src/core/emulator.js"
+    "start": "babel src -d build && node build/server.js",
+    "server": "nodemon src/server.js --exec babel-node",
+    "build": "babel src -d lib",
+    "emulator": "babel-node ./src/core/emulator"
   },
   "babel": {
     "presets": [
