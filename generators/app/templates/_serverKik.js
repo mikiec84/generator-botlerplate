@@ -1,6 +1,6 @@
 import Kik from '@kikinteractive/kik'
-import http from 'http' <% if (sources === 'sources') { %>
-import Bot from './core/bot' <% } else { %>
+import http from 'http'<% if (sources === 'sources') { %>
+import Bot from './core/bot'<% } else { %>
 import { Bot } from 'botlerplate' <% } %> <% if (example === 'yes') { %>
 import requireAll from 'require-all'
 import _ from 'lodash'

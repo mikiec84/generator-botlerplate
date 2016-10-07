@@ -6,6 +6,7 @@ import Action from '../core/action'
 
 class Yes extends Action {
   constructor() {
+    super()
     this.intent = 'yes'
     this.dependencies = [
       {
@@ -21,4 +22,4 @@ class Yes extends Action {
   }
 }
 
-module.exports = Information
+module.exports = Yes

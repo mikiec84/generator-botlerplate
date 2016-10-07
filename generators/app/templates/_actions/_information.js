@@ -6,6 +6,7 @@ import Action from '../core/action'
 
 class Information extends Action {
   constructor() {
+    super()
     this.intent = 'information'
     this.constraints = [
       {

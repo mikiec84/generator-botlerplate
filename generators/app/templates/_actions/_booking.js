@@ -6,6 +6,7 @@ import Action from '../core/action'
 
 class Booking extends Action {
   constructor() {
+    super()
     this.intent = 'booking'
     this.next = 'Information'
     this.constraints = [
