@@ -28,7 +28,7 @@ myBot.registerActions(_.values(actions)) <% } %>
 
 <% if (mongo === 'yes') { %>
 // DATABASE INITIALIZATION
-bot.useMongo(config.database) <% } %>
+myBot.useDatabase(config.database) <% } %>
 
 const server = express()
 server.use(bodyParser.json())

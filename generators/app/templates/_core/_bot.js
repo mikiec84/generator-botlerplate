@@ -199,14 +199,14 @@ class Bot {
                     this.saveConversation(conversation, () => {
                       replies.push(resp)
                       if (nextResp) { replies.push(nextResp) }
-                      const resps = this.pickReplies(replies, language)
+                      const resps = this.pickReplies(replies, results.language)
                       return resolve(resps.map(r => this.evaluateReply(r, conversation.memory)))
                     })
                   })
                 }).catch(reject)
             } else {
               this.saveConversation(conversation, () => {
-                const resps = this.pickReplies(replies, language)
+                const resps = this.pickReplies(replies, results.language)
                 return resolve(resps.map(r => this.evaluateReply(r, conversation.memory)))
               })
             }
