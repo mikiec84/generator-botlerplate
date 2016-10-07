@@ -1,7 +1,7 @@
 module.exports = {<% if (mongo === 'yes') { %>
   database: {
     name: '',
-    host: '',
+    hostname: '',
     port: '',
     username: '',
     password: ''
