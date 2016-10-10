@@ -79,47 +79,6 @@ module.exports = generators.Base.extend({
       var that = this
       var tplName = ''
 
-      // if (this.props.sources === 'sources') {
-      //   this.spawnCommand('git', ['clone', 'https://github.com/RecastAI/botlerplate.git', this.props.name])
-      //     .on('close', function () {
-      //       var npmdir = process.cwd()// + '/' + that.props.name
-      //       process.chdir(npmdir)
-      //       // update botlerplate's package.json
-      //       var pkgContent = fs.readFileSync('package.json')
-      //       var pkg = JSON.parse(pkgContent)
-      //       pkg.name = that.props.name
-      //       pkg.description = ''
-      //       pkg.main = 'build/server.js'
-      //       delete pkg.ava
-      //       pkg.author = ''
-      //       pkg.license = ''
-      //       if (that.props.server === 'slack') {
-      //         pkg.dependencies['@slack/client'] = '^3.6.0'
-      //       } else if (that.props.server === 'kik') {
-      //         pkg.dependencies['@kikinteractive/kik'] = '^2.0.10'
-      //       } else if (that.props.server === 'microsoft bot connector') {
-      //         pkg.dependencies['express'] = '^4.14.0'
-      //         pkg.dependencies['botbuilder'] = '3.1.1'
-      //       } else if (that.props.server === 'messenger') {
-      //         pkg.dependencies['express'] = '^4.14.0'
-      //         pkg.dependencies['body-parser'] = '^1.15.2'
-      //         pkg.dependencies['request'] = '^2.75.0'
-      //       }
-      //       fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2))
-      //       that.spawnCommand('rm', ['config.js']).on('close', function() {
-      //         that.fs.copyTpl(
-      //           that.templatePath('_config.js'),
-      //           that.destinationPath(`./${that.props.name}/config.js`), {
-      //             name: that.props.name,
-      //             server: that.props.server,
-      //             mongo: that.props.mongo,
-      //             sources: that.props.sources,
-      //             example: that.props.example,
-      //           })
-      //         that.installDependencies({ bower: false })
-      //       })
-      //     })
-      // }
       if (this.props.sources === 'sources') {
         var files = ['bot.js', 'action.js', 'emulator.js', 'conversation.js']
         var that = this
@@ -138,6 +97,17 @@ module.exports = generators.Base.extend({
         this.fs.copyTpl(
           this.templatePath('_package_src.json'),
           this.destinationPath(this.props.name + '/package.json'), {
+            name: this.props.name,
+            server: this.props.server,
+            mongo: this.props.mongo,
+            sources: this.props.sources,
+            example: this.props.example,
+          }
+        )
+      } else {
+        this.fs.copyTpl(
+          this.templatePath('_core/_emulator.js'),
+          this.destinationPath(this.props.name + '/' + 'src/core/emulator.js'), {
             name: this.props.name,
             server: this.props.server,
             mongo: this.props.mongo,

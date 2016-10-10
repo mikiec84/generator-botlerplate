@@ -21,6 +21,7 @@ const bot = new Bot({
   token,
   noIntent: {
     en: ['Aye donte endeurstende'],
+    fr: ['Moi yen a pas comprendre'],
   },
 })
 
