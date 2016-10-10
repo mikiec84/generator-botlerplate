@@ -87,15 +87,31 @@ cd myFirstSlackBot/
 
 You have a folder with your config.js, all your modules installed, your package.json, and src direcotry with a starter-pack of the channel you chose.
 
-[logo8]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/ls.png "Recast.AI"
+```bash
 
-![alt text][logo8]
-[logo9]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/src.png "Recast.AI"
+node_modules/
+package.json
+config.js
+src
+ |- actions
+ |     |- booking.js
+ |     |- greetings.js
+ |     |- information.js
+ |     |- no.js
+ |     |- yes.js
+ |
+ |---- core
+ |       |- action.js
+ |       |- bot.js
+ |       |- conversation.js
+ |       |- emulator.js
+ |
+ |- server.js
+    
+```
 
-![alt text][logo9]
 
 Here it is!
-
 
 You now have your own chatbot. Improve this code to make an even more amazing and custom bot!
 
