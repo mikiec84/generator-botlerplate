@@ -4,14 +4,14 @@
 
 ![alt text][logo]
 
-Recast.AI official Generator Botlerplate in Node.js with [Yeoman](https://yeoman.io)
+Recast.AI's official Generator Botlerplate in Node.js with [Yeoman](https://yeoman.io)
 
 ## Synospis
 
-This module is a generator for starting your project with a lot of strong bases.
+This module is a generator that will help you easily start your project!
 
 
-For more instructions about Botlerplate, go to [Github Botlerplate](https://github.com/RecastAI/botlerplate)
+For more instructions on the Botlerplate, go to [Github Botlerplate](https://github.com/RecastAI/botlerplate)
 
 ## Installation
 
@@ -24,26 +24,24 @@ npm install -g generator-botlerplate
 yo botlerplate
 ```
 
-
-He will ask you a name for your project:
+When asked for a project name:
 
 [logo2]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/name.png "Recast.AI"
 
 ![alt text][logo2]
 
-Just enter the name you want for your bot, example: myFirstSlackBot.
+Enter the name you want for your bot, example: myFirstSlackBot.
 
 
 
-After, choose if you prefer use the sources of the botlerplate, with all ressources for work directly on botlerplate,
-or the module, if you prefer have a begin of project, but use the node module of botlerplate. In the two cases,
-you will have a starter pack for begin easily your project.
+Then, choose if you prefer to use the sources of the botlerplate, with all ressources directly available,
+or the module, if you'd rather have a started project to work on but use the node module of the Botlerplate. Either way, you'll have something to start working on. 
 
 [logo3]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/source.png "Recast.AI"
 
 ![alt text][logo3]
 
-You just need to select your preference, and he will take care of all the rest.
+Select your preferences, and the Botlerplate will take care of the rest.
 
 
 
@@ -53,32 +51,30 @@ Next step is choosing if you need a mongoDB or not.
 
 ![alt text][logo4]
 
-If you want a mongoDB, he will install you the package for use it, and you just need to fill the config.js when all steps are done. If you don't, you can install it after, no problems.
+If you want a mongoDB, the required package will be installed. You just need to fill the config.js when all steps are completed. You can also install it after, no problems.
 
 
 
-He will ask you what connector you want to use, you have choices with Slack, Messenger, Kik, Microsoft Bot connector,or just don't connect your bot.
-This connector will directly connect your bot to this chat. You will be directly have the server do you need, and it's will be more simple for you.
+When asked for the connector you want to use, choose between Slack, Messenger, Kik, Microsoft Bot connector, or just don't connect your bot.
+This connector will automatically connect your bot to the chosen channel. You will directly have the server you need, so it's easier for you.
 
 [logo5]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/connector.png "Recast.AI"
 
 ![alt text][logo5]
 
-Select your favorite, and go for the last step !
 
-
-This last step is for knowing if you want an example of some intents or not. This example is a little bot who can explain you better how to start with Recast.
-Obviously you have a great documentation for this, but it can help to better understand all the same.
-This intents are the first bot you automaticaly have if you register on [Recast.AI](https://recast.ai).
+In this last step, decide if you want to have an example intent or not. The example given is a bot explaining you how to start with Recast.AI.
+You can always refer to our documentation for further information.
+The intents you'll get as an example are the ones from the bot you automatically have when registering on [Recast.AI](https://recast.ai).
 
 
 [logo6]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/example.png "Recast.AI"
 
 ![alt text][logo6]
 
-Press enter, and let the generator do the rest ! 
+Press enter, and let the generator do the rest! 
 
-He will install all you need  in a folder with your project's name.
+Everything you need is created in a folder with your project's name.
 
 
 [logo7]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/end.png "Recast.AI"
@@ -89,7 +85,7 @@ He will install all you need  in a folder with your project's name.
 cd myFirstSlackBot/
 ```
 
-You will have a folder with your config.js, all yours modules installed, your package.json, and src direcotry with a starter-pack of thechannel you chose.
+You have a folder with your config.js, all your modules installed, your package.json, and src direcotry with a starter-pack of the channel you chose.
 
 [logo8]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/ls.png "Recast.AI"
 
@@ -101,34 +97,33 @@ You will have a folder with your config.js, all yours modules installed, your pa
 Here it is!
 
 
-You have your personnal smart Chat-bot. You can now improved this code, and make an amazing bot!
+You now have your own chatbot. Improve this code to make an even more amazing and custom bot!
 
 
-Don't forget to improved your config.js file, and for starting to use it, use this command:
+Don't forget to improve your config.js file, and to start using it, use this command:
 
 
-npm start: builds and run the server,
+npm start: builds and runs the server,
 
 
-npm run server: run the server for development (with live reload)
+npm run server: runs the server for development (with live reload)
 
 
 npm run build: builds all the sources from es6 to es5
 
 
-npm run emulator: test your bot on your terminal
+npm run emulator: tests your bot on your terminal
 
 
 ## More
 
-You can view more information on recast on [man.recast.ai](https://man.recast.ai).
+You can find more information about Recast.AI on [man.recast.ai](https://man.recast.ai).
 
 ## Author
 
-Bruno Gantelmi, bruno.gantelmi@recast.ai
+Bruno Gantelmi (bruno.gantelmi@recast.ai) - Recast.AI
 
-
-François Triquet, francois.triquet@recast.ai
+François Triquet (francois.triquet@recast.ai) - Recast.AI
 
 You can follow us on Twitter at [@recastai](https://twitter.com/recastai) for updates and releases.
 
