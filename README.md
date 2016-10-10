@@ -125,12 +125,15 @@ Run the server
 `npm start`
 
 Run the server for development (with live reload)
+
 `npm run server`
 
 Build all the sources from es6 to es5
+
 `npm run build`
 
 Test your bot locally in your terminal
+
 `npm run emulator`
 
 
