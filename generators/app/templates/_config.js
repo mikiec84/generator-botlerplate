@@ -1,9 +1,9 @@
 module.exports = {
   recastToken: '',<% if (mongo === 'yes') { %>
   database: {
-    name: '',
-    hostname: '',
-    port: '',
+    name: 'testbot',
+    hostname: 'localhost',
+    port: '27017',
     username: '',
     password: ''
   },<% } %><% if (server === 'microsoft bot connector') { %>
