@@ -11,7 +11,7 @@ Recast.AI's official Generator Botlerplate in Node.js with [Yeoman](https://yeom
 This module is a generator that will help you easily start your project!
 
 
-For more instructions on the Botlerplate, go to [Github Botlerplate](https://github.com/RecastAI/botlerplate)
+For more instructions on the Botlerplate, go to the [Botlerplate](https://github.com/RecastAI/botlerplate)
 
 ## Installation
 
