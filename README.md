@@ -1,5 +1,7 @@
 # Recast.AI - Generator Botlerplate
 
+Recast.AI's official Generator Botlerplate in Node.js with Yeoman
+
 [logo]: https://raw.githubusercontent.com/RecastAI/generator-botlerplate/master/generators/app/ressources/logo-inline.png "Recast.AI"
 
 ![alt text][logo]
