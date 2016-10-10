@@ -116,19 +116,22 @@ Here it is!
 You now have your own chatbot. Improve this code to make an even more amazing and custom bot!
 
 
+## Launch
+
 Don't forget to improve your config.js file, and to start using it, use this command:
 
+Run the server
 
-npm start: builds and runs the server,
+`npm start`
 
+Run the server for development (with live reload)
+`npm run server`
 
-npm run server: runs the server for development (with live reload)
+Build all the sources from es6 to es5
+`npm run build`
 
-
-npm run build: builds all the sources from es6 to es5
-
-
-npm run emulator: tests your bot on your terminal
+Test your bot locally in your terminal
+`npm run emulator`
 
 
 ## More
