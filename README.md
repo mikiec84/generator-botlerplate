@@ -1,6 +1,6 @@
 # Recast.AI - Generator Botlerplate
 
-[logo]: https://github.com/RecastAI/SDK-NodeJs/blob/master/misc/logo-inline.png "Recast.AI"
+[logo]: https://raw.githubusercontent.com/RecastAI/generator-botlerplate/master/generators/app/ressources/logo-inline.png "Recast.AI"
 
 ![alt text][logo]
 
@@ -26,7 +26,7 @@ yo botlerplate
 
 When asked for a project name:
 
-[logo2]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/name.png "Recast.AI"
+[logo2]: https://raw.githubusercontent.com/RecastAI/generator-botlerplate/features/prompt/generators/app/ressources/name.png "Recast.AI"
 
 ![alt text][logo2]
 
@@ -37,7 +37,7 @@ Enter the name you want for your bot, example: myFirstSlackBot.
 Then, choose if you prefer to use the sources of the botlerplate (with all source files directly available)
 or the module (with npm). Either way, you'll have something to start working on. 
 
-[logo3]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/source.png "Recast.AI"
+[logo3]: https://raw.githubusercontent.com/RecastAI/generator-botlerplate/features/prompt/generators/app/ressources/source.png "Recast.AI"
 
 ![alt text][logo3]
 
@@ -47,7 +47,7 @@ Select your preferences, and the Botlerplate will take care of the rest.
 
 Next step is choosing if you need a mongoDB or not.
 
-[logo4]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/mongo.png "Recast.AI"
+[logo4]: https://raw.githubusercontent.com/RecastAI/generator-botlerplate/features/prompt/generators/app/ressources/mongo.png "Recast.AI"
 
 ![alt text][logo4]
 
@@ -64,7 +64,7 @@ When asked for the connector you want to use, choose between:
 
 This connector will automatically connect your bot to the chosen channel. You will directly have the server you need, so it's easier for you.
 
-[logo5]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/connector.png "Recast.AI"
+[logo5]: https://raw.githubusercontent.com/RecastAI/generator-botlerplate/features/prompt/generators/app/ressources/connector.png "Recast.AI"
 
 ![alt text][logo5]
 
@@ -74,7 +74,7 @@ You can always refer to our documentation for further information.
 The intents you'll need to launch this example bot are the ones from the bot you automatically have when registering on [Recast.AI](https://recast.ai).
 
 
-[logo6]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/example.png "Recast.AI"
+[logo6]: https://raw.githubusercontent.com/RecastAI/generator-botlerplate/features/prompt/generators/app/ressources/example.png "Recast.AI"
 
 ![alt text][logo6]
 
