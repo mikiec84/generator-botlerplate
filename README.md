@@ -77,10 +77,6 @@ Press enter, and let the generator do the rest!
 Everything you need is created in a folder with your project's name.
 
 
-[logo7]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/end.png "Recast.AI"
-
-![alt text][logo7]
-
 ```bash
 cd myFirstSlackBot/
 ```
