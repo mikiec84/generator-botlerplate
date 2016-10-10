@@ -34,8 +34,8 @@ Enter the name you want for your bot, example: myFirstSlackBot.
 
 
 
-Then, choose if you prefer to use the sources of the botlerplate, with all ressources directly available,
-or the module, if you'd rather have a started project to work on but use the node module of the Botlerplate. Either way, you'll have something to start working on. 
+Then, choose if you prefer to use the sources of the botlerplate (with all source files directly available)
+or the module (with npm). Either way, you'll have something to start working on. 
 
 [logo3]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/source.png "Recast.AI"
 
@@ -55,7 +55,13 @@ If you want a mongoDB, the required package will be installed. You just need to 
 
 
 
-When asked for the connector you want to use, choose between Slack, Messenger, Kik, Microsoft Bot connector, or just don't connect your bot.
+When asked for the connector you want to use, choose between:
+* Slack
+* Messenger
+* Kik
+* Microsoft Bot connector
+* or just don't connect your bot.
+
 This connector will automatically connect your bot to the chosen channel. You will directly have the server you need, so it's easier for you.
 
 [logo5]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/connector.png "Recast.AI"
@@ -63,9 +69,9 @@ This connector will automatically connect your bot to the chosen channel. You wi
 ![alt text][logo5]
 
 
-In this last step, decide if you want to have an example intent or not. The example given is a bot explaining you how to start with Recast.AI.
+In this last step, decide if you want to have a code example with all the logic or not. The example given is a bot explaining you how to start with Recast.AI.
 You can always refer to our documentation for further information.
-The intents you'll get as an example are the ones from the bot you automatically have when registering on [Recast.AI](https://recast.ai).
+The intents you'll need to launch this example bot are the ones from the bot you automatically have when registering on [Recast.AI](https://recast.ai).
 
 
 [logo6]: https://github.com/RecastAI/generator-botlerplate/blob/features/prompt/generators/app/ressources/example.png "Recast.AI"
