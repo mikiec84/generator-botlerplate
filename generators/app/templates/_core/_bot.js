@@ -11,7 +11,7 @@ class Bot {
     this.actions = {}
     this.token = opts && opts.token
     this.language = opts && opts.language
-    this.noIntent = opts && opts.noIntent
+    this.fallbackReplies = opts && opts.fallbackReplies
   }
 
   useDatabase(conf) {
@@ -28,6 +28,10 @@ class Bot {
     mongoose.connect(db, (err) => {
       if (err) { throw err }
     })
+  }
+
+  setFallbackReplies(replies) {
+    this.fallbackReplies = replies
   }
 
   registerActions(Actions) {
@@ -96,7 +100,7 @@ class Bot {
       if (!variable[field]) { return '' }
       return variable[field]
     }
-    return reply.replace(/{{\s*([a-zA-Z0-9\-_]+)\.?([a-zA-Z0-9\-_]+)?\s*}}/, replacer)
+    return reply.replace(/{{\s*([a-zA-Z0-9\-_]+)\.?([a-zA-Z0-9\-_]+)?\s*}}/g, replacer)
   }
 
   evaluateReply(reply, memory) {
@@ -139,8 +143,8 @@ class Bot {
 
           if (results.intents.length === 0) {
             act = this.searchActionWithoutIntent(conversation, results.entities)
-            if (!act && this.noIntent) {
-              return resolve(this.evaluateReply(this.pickReplies([this.noIntent],
+            if (!act && this.fallbackReplies) {
+              return resolve(this.evaluateReply(this.pickReplies([this.fallbackReplies],
                                                                  results.language)))
             }
             if (!act) {
@@ -202,8 +206,20 @@ class Bot {
                       const resps = this.pickReplies(replies, results.language)
                       return resolve(resps.map(r => this.evaluateReply(r, conversation.memory)))
                     })
+                  }).catch(nextResp => {
+                    this.saveConversation(conversation, () => {
+                      replies.push(nexResp)
+                      const resps = this.pickReplies(replies, results.language)
+                      return resolve(resps.map(r => this.evaluateReply(r, conversation.memory)))
+                    })
                   })
-                }).catch(reject)
+                }).catch(resp => {
+                  this.saveConversation(conversation, () => {
+                    replies.push(resp)
+                    const resps = this.pickReplies(replies, results.language)
+                    return resolve(resps.map(r => this.evaluateReply(r, conversation.memory)))
+                  })
+                })
             } else {
               this.saveConversation(conversation, () => {
                 const resps = this.pickReplies(replies, results.language)
@@ -224,7 +240,8 @@ class Bot {
     return responses.map(r => {
       if (Array.isArray(r)) { return this.getRandom(r) }
 
-      const resps = r[language]
+      const resps = r[language] || r.en
+
 
       if (Array.isArray(resps)) { return this.getRandom(resps) }
 
@@ -237,19 +254,19 @@ class Bot {
   }
 
   // Updates memory with input's entities
-  // Priority: 1) constraint of the current action
-  //           2) any constraint that is alone in the bot
+  // Priority: 1) knowledge of the current action
+  //           2) any knowledge that is alone in the bot
   updateMemory(entities, conversation, action) {
     let actionKnowledges = null
     if (action) {
-      actionKnowledges = _.flatten(action.constraints.map(c => c.entities))
+      actionKnowledges = _.flatten(action.knowledges.map(c => c.entities))
     }
     return new Promise(resolve => {
       const promises = []
 
       // loop through the entities map
       _.toPairs(entities).forEach(([name, ents]) => {
-        // search for a constraint of the current action
+        // search for a knowledge of the current action
         const actionKnowledge =
           (actionKnowledges && actionKnowledges.find(k => k.entity === name)) || null
         ents.forEach(entity => {
@@ -265,7 +282,7 @@ class Bot {
             }))(actionKnowledge.alias, entity))
           } else {
             const gblKnowledges = _.flatten(_.values(this.actions)
-                                             .map(a => a.allConstraints()))
+                                             .map(a => a.allKnowledges()))
                                    .filter(k => k.entity === name)
 
             if (gblKnowledges.length === 1) {
@@ -331,8 +348,8 @@ class Bot {
     let shouldChoose = false
 
     _.forOwn(entities, (values, key) => {
-      const constraint = action.allConstraints().find(c => c.entity === key)
-      if (values.length === 1 && constraint && !conversation.memory[constraint.alias]) {
+      const knowledge = action.allKnowledges().find(c => c.entity === key)
+      if (values.length === 1 && knowledge && !conversation.memory[knowledge.alias]) {
         shouldChoose = true
       }
     })
