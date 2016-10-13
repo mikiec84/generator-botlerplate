@@ -254,19 +254,19 @@ class Bot {
   }
 
   // Updates memory with input's entities
-  // Priority: 1) knowledge of the current action
-  //           2) any knowledge that is alone in the bot
+  // Priority: 1) notion of the current action
+  //           2) any notion that is alone in the bot
   updateMemory(entities, conversation, action) {
     let actionNotions = null
     if (action) {
-      actionNotions = _.flatten(action.knowledges.map(c => c.entities))
+      actionNotions = _.flatten(action.notions.map(c => c.entities))
     }
     return new Promise(resolve => {
       const promises = []
 
       // loop through the entities map
       _.toPairs(entities).forEach(([name, ents]) => {
-        // search for a knowledge of the current action
+        // search for a notion of the current action
         const actionNotion =
           (actionNotions && actionNotions.find(k => k.entity === name)) || null
         ents.forEach(entity => {
@@ -348,8 +348,8 @@ class Bot {
     let shouldChoose = false
 
     _.forOwn(entities, (values, key) => {
-      const knowledge = action.allNotions().find(c => c.entity === key)
-      if (values.length === 1 && knowledge && !conversation.memory[knowledge.alias]) {
+      const notion = action.allNotions().find(c => c.entity === key)
+      if (values.length === 1 && notion && !conversation.memory[notion.alias]) {
         shouldChoose = true
       }
     })
