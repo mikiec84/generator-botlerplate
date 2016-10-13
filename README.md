@@ -23,6 +23,7 @@ npm install -g generator-botlerplate
 ## Usage
 
 ```bash
+npm link
 yo botlerplate
 ```
 
@@ -37,7 +38,7 @@ Enter the name you want for your bot, example: myFirstSlackBot.
 
 
 Then, choose if you prefer to use the sources of the botlerplate (with all source files directly available)
-or the module (with npm). Either way, you'll have something to start working on. 
+or the module (with npm). Either way, you'll have something to start working on.
 
 [logo3]: https://raw.githubusercontent.com/RecastAI/generator-botlerplate/features/prompt/generators/app/ressources/source.png "Recast.AI"
 
@@ -80,7 +81,7 @@ The intents you'll need to launch this example bot are the ones from the bot you
 
 ![alt text][logo6]
 
-Press enter, and let the generator do the rest! 
+Press enter, and let the generator do the rest!
 
 Everything you need is created in a folder with your project's name.
 
@@ -111,7 +112,7 @@ src
  |       |- emulator.js
  |
  |- server.js
-    
+
 ```
 
 

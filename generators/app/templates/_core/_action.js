@@ -50,7 +50,7 @@ class Action {
     return _.flatten(this.dependencies.map(d => d.actions))
   }
 
-  allKnowledges() {
+  allNotions() {
     return _.flatten(this.knowledges.map(c => c.entities))
   }
 
