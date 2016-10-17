@@ -3,10 +3,10 @@ import _ from 'lodash'<% if (mongo) { %>
 import mongoose from 'mongoose' <% } %>
 import requireAll from 'require-all'<% if (sources === 'sources') { %>
 import Bot from './bot'<% } else { %>
-import { Bot } from 'botlerplate' <% } %>
+import { Bot } from 'bot-dialog' <% } %>
 import config from '../../config'
 
-const actions = requireAll(`${__dirname}/../actions`)
+const actions = requireAll(`${__dirname}/actions`)
 
 const recastToken = ''
 

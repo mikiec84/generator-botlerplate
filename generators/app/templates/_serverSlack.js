@@ -1,6 +1,6 @@
 import slack from '@slack/client' <% if (sources === 'sources') { %>
 import Bot from './core/bot' <% } else { %>
-import { Bot } from 'botlerplate' <% } %>
+import { Bot } from 'bot-dialog' <% } %>
 import requireAll from 'require-all'
 import _ from 'lodash'
 const actions = requireAll(`${__dirname}/actions`)

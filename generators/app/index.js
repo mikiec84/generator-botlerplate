@@ -106,7 +106,7 @@ module.exports = generators.Base.extend({
         )
       } else {
         this.fs.copyTpl(
-          this.templatePath('_core/_emulator.js'),
+          this.templatePath('_emulator.js'),
           this.destinationPath(this.props.name + '/' + 'src/core/emulator.js'), {
             name: this.props.name,
             server: this.props.server,

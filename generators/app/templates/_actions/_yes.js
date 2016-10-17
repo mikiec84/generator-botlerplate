@@ -1,5 +1,5 @@
 <% if (sources === 'module') { %>
-import { Action } from 'botlerplate'
+import { Action } from 'bot-dialog'
 <% } else { %>
 import Action from '../core/action'
 <% } %>

@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import request from 'request' <% if (sources === 'sources') { %>
 import Bot from './core/bot' <% } else { %>
-import { Bot } from 'botlerplate' <% } %>
+import { Bot } from 'bot-dialog' <% } %>
 import requireAll from 'require-all'
 import _ from 'lodash'
 const actions = requireAll(`${__dirname}/actions`)
