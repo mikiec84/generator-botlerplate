@@ -1,8 +1,4 @@
-<% if (sources === 'module') { %>
 import { Action } from 'bot-dialog'
-<% } else { %>
-import Action from '../core/action'
-<% } %>
 
 class Booking extends Action {
   constructor() {
