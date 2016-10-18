@@ -1,6 +1,5 @@
 var generators = require('yeoman-generator')
 var chalk = require('chalk')
-var yosay = require('yosay')
 var _ = require('lodash')
 var fs = require('fs')
 
