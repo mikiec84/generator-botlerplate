@@ -6,7 +6,7 @@
 		"start": "babel src -d build && node build/server.js",
 		"server": "nodemon src/server.js --exec babel-node",
 		"build": "babel src -d lib",
-		"emulator": "babel-node ./src/core/emulator"
+		"emulator": "babel-node ./src/emulator"
 	},
 	"babel": {
 		"presets": [
