@@ -25,11 +25,6 @@ module.exports = generators.Base.extend({
       default: 'my-bot',
     }, {
       type: 'list',
-      name: 'sources',
-      message: 'Would you like to to use sources or module of botlerplate?',
-      choices: ['sources', 'module'],
-    }, {
-      type: 'list',
       name: 'mongo',
       message: 'Would you like to enable mongodb?',
       choices: ['yes', 'no'],
@@ -53,68 +48,35 @@ module.exports = generators.Base.extend({
 
   writing: {
     config: function () {
-      if (this.props.sources === 'module') {
-        this.fs.copyTpl(
-          this.templatePath('_package.json'),
-          this.destinationPath(`./${this.props.name}/package.json`), {
-            name: this.props.name,
-            server: this.props.server,
-            mongo: this.props.mongo,
-            sources: this.props.sources,
-            example: this.props.example,
-          })
-      }
+      this.fs.copyTpl(
+        this.templatePath('_package.json'),
+        this.destinationPath(`./${this.props.name}/package.json`), {
+          name: this.props.name,
+          server: this.props.server,
+          mongo: this.props.mongo,
+          example: this.props.example,
+        })
       this.fs.copyTpl(
         this.templatePath('_config.js'),
         this.destinationPath(`./${this.props.name}/config.js`), {
           name: this.props.name,
           server: this.props.server,
           mongo: this.props.mongo,
-          sources: this.props.sources,
           example: this.props.example,
         })
     },
     app: function () {
-      var that = this
       var tplName = ''
 
-      if (this.props.sources === 'sources') {
-        var files = ['bot.js', 'action.js', 'emulator.js', 'conversation.js']
-        var that = this
-        files.forEach(function (file) {
-          that.fs.copyTpl(
-            that.templatePath('_core/_' + file),
-            that.destinationPath(that.props.name + '/' + 'src/core/' + file), {
-              name: that.props.name,
-              server: that.props.server,
-              mongo: that.props.mongo,
-              sources: that.props.sources,
-              example: that.props.example,
-            }
-          )
-        })
-        this.fs.copyTpl(
-          this.templatePath('_package_src.json'),
-          this.destinationPath(this.props.name + '/package.json'), {
-            name: this.props.name,
-            server: this.props.server,
-            mongo: this.props.mongo,
-            sources: this.props.sources,
-            example: this.props.example,
-          }
-        )
-      } else {
-        this.fs.copyTpl(
-          this.templatePath('_emulator.js'),
-          this.destinationPath(this.props.name + '/' + 'src/core/emulator.js'), {
-            name: this.props.name,
-            server: this.props.server,
-            mongo: this.props.mongo,
-            sources: this.props.sources,
-            example: this.props.example,
-          }
-        )
-      }
+      this.fs.copyTpl(
+        this.templatePath('_emulator.js'),
+        this.destinationPath(this.props.name + '/' + 'src/emulator.js'), {
+          name: this.props.name,
+          server: this.props.server,
+          mongo: this.props.mongo,
+          example: this.props.example,
+        }
+      )
       switch (this.props.server) {
         case 'microsoft bot connector':
           tplName = '_serverMicrosoft.js'
@@ -138,7 +100,6 @@ module.exports = generators.Base.extend({
             name: this.props.name,
             server: this.props.server,
             mongo: this.props.mongo,
-            sources: this.props.sources,
             example: this.props.example,
           }
         )
@@ -150,7 +111,6 @@ module.exports = generators.Base.extend({
             name: this.props.name,
             server: this.props.server,
             mongo: this.props.mongo,
-            sources: this.props.sources,
             example: this.props.example,
           }
         )
@@ -160,7 +120,6 @@ module.exports = generators.Base.extend({
             name: this.props.name,
             server: this.props.server,
             mongo: this.props.mongo,
-            sources: this.props.sources,
             example: this.props.example,
           }
         )
@@ -170,7 +129,6 @@ module.exports = generators.Base.extend({
             name: this.props.name,
             server: this.props.server,
             mongo: this.props.mongo,
-            sources: this.props.sources,
             example: this.props.example,
           }
         )
@@ -180,7 +138,6 @@ module.exports = generators.Base.extend({
             name: this.props.name,
             server: this.props.server,
             mongo: this.props.mongo,
-            sources: this.props.sources,
             example: this.props.example,
           }
         )
@@ -190,17 +147,6 @@ module.exports = generators.Base.extend({
             name: this.props.name,
             server: this.props.server,
             mongo: this.props.mongo,
-            sources: this.props.sources,
-            example: this.props.example,
-          }
-        )
-        this.fs.copyTpl(
-          this.templatePath('_core/_emulator.js'),
-          this.destinationPath(`./${this.props.name}/src/core/emulator.js`), {
-            name: this.props.name,
-            server: this.props.server,
-            mongo: this.props.mongo,
-            sources: this.props.sources,
             example: this.props.example,
           }
         )

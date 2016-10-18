@@ -1,7 +1,6 @@
 import express from 'express'
-import builder from 'botbuilder' <% if (sources === 'sources') { %>
-import Bot from './core/bot' <% } else { %>
-import { Bot } from 'bot-dialog' <% } %>
+import builder from 'botbuilder'
+import { Bot } from 'bot-dialog'
 import requireAll from 'require-all'
 import _ from 'lodash'
 const actions = requireAll(`${__dirname}/actions`)

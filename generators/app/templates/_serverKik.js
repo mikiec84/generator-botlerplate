@@ -1,7 +1,6 @@
 import Kik from '@kikinteractive/kik'
-import http from 'http'<% if (sources === 'sources') { %>
-import Bot from './core/bot'<% } else { %>
-import { Bot } from 'bot-dialog' <% } %>
+import http from 'http'
+import { Bot } from 'bot-dialog'
 import requireAll from 'require-all'
 import _ from 'lodash'
 const actions = requireAll(`${__dirname}/actions`)

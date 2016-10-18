@@ -5,7 +5,7 @@ class Booking extends Action {
     super()
     this.intent = 'booking'
     this.next = 'Information'
-    this.constraints = [
+    this.notions = [
       {
         entities: [{ entity: 'datetime', alias: 'date' }],
         isMissing: { en: ['Can you give me the date you like to book the meeting room {{room-number}}?']},

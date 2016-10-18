@@ -4,7 +4,7 @@ class Information extends Action {
   constructor() {
     super()
     this.intent = 'information'
-    this.constraints = [
+    this.notions = [
       {
         entities: [{ entity: 'email', alias: 'email' }],
         isMissing: { en: ['Can I have your email?']},
