@@ -1,6 +1,6 @@
 import express from 'express'
 import builder from 'botbuilder'
-import { Bot } from 'bot-dialog'
+import { Bot } from 'bot-dialog-manager'
 import requireAll from 'require-all'
 import _ from 'lodash'
 const actions = requireAll(`${__dirname}/actions`)
@@ -39,6 +39,7 @@ microsoftBot.dialog('/', session => {
   // User input
   const text = session.message.text
 
+  console.log(`Message received: ${text}`)
   // User's conversation unique id
   // It will be used by to identify each conversation with a user
   const conversationId = session.message.address.conversation.id
@@ -57,3 +58,4 @@ microsoftBot.dialog('/', session => {
 const server = express()
 server.listen(process.env.PORT || config.port || 8080)
 server.post('/', connector.listen())
+console.log('Server started!')

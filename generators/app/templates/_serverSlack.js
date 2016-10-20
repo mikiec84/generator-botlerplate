@@ -1,5 +1,5 @@
 import slack from '@slack/client'
-import { Bot } from 'bot-dialog'
+import { Bot } from 'bot-dialog-manager'
 import requireAll from 'require-all'
 import _ from 'lodash'
 const actions = requireAll(`${__dirname}/actions`)
@@ -31,11 +31,13 @@ const SlackClient = slack.RtmClient
 const slackEvent = slack.RTM_EVENTS
 const rtm = new SlackClient(config.slack.token, { logLevel: 'false' })
 rtm.start()
+console.log('Server started!')
 
 rtm.on(slackEvent.MESSAGE, (message) => {
   // User input
   const text = message.text
 
+  console.log(`Message received: ${text}`)
   // User id
   // It will be used by to identify each conversation with a user
   const conversationId = message.user

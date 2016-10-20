@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import request from 'request'
-import { Bot } from 'bot-dialog'
+import { Bot } from 'bot-dialog-manager'
 import requireAll from 'require-all'
 import _ from 'lodash'
 const actions = requireAll(`${__dirname}/actions`)
@@ -88,6 +88,7 @@ app.post('/webhook', (req, res) => {
           // User input
           const text = messagingEvent.message.text
 
+          console.log(`Message received: ${text}`)
           // User's conversation unique id
           // It will be used by to identify each conversation with a user
           const conversationId = messagingEvent.sender.id
@@ -110,3 +111,4 @@ app.post('/webhook', (req, res) => {
 app.listen(app.get('port'), () => {
   console.log('Our bot is running on port', app.get('port'))
 })
+console.log('Server started!')

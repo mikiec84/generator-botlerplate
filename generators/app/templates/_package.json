@@ -30,7 +30,7 @@
 		"request": "^2.75.0",
 		"body-parser": "^1.15.2",
 		"express": "^4.14.0",<% } %>
-		"bot-dialog-manager": "^1.0.0",
+		"bot-dialog-manager": "^1.1.2",
 		"lodash": "^4.16.2",
 		"require-all": "^2.0.0"
 	}

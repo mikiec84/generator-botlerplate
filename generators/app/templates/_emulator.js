@@ -2,7 +2,7 @@ import readline from 'readline'
 import _ from 'lodash'<% if (mongo) { %>
 import mongoose from 'mongoose' <% } %>
 import requireAll from 'require-all'
-import { Bot } from 'bot-dialog'
+import { Bot } from 'bot-dialog-manager'
 import config from '../config'
 
 const actions = requireAll(`${__dirname}/actions`)

@@ -1,4 +1,4 @@
-import { Action } from 'bot-dialog'
+import { Action } from 'bot-dialog-manager'
 
 class Greetings extends Action {
   constructor() {

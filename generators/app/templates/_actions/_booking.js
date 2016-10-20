@@ -1,4 +1,4 @@
-import { Action } from 'bot-dialog'
+import { Action } from 'bot-dialog-manager'
 
 class Booking extends Action {
   constructor() {
