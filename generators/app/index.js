@@ -77,6 +77,15 @@ module.exports = generators.Base.extend({
           example: this.props.example,
         }
       )
+      this.fs.copyTpl(
+        this.templatePath('_bot.js'),
+        this.destinationPath(this.props.name + '/' + 'src/bot.js'), {
+          name: this.props.name,
+          server: this.props.server,
+          mongo: this.props.mongo,
+          example: this.props.example,
+        }
+      )
       switch (this.props.server) {
         case 'microsoft bot connector':
           tplName = '_serverMicrosoft.js'
