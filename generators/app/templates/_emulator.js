@@ -1,30 +1,13 @@
-import readline from 'readline'
-import _ from 'lodash'<% if (mongo) { %>
+import readline from 'readline'<% if (mongo) { %>
 import mongoose from 'mongoose' <% } %>
-import requireAll from 'require-all'
-import { Bot } from 'bot-dialog-manager'
+
+import bot from './bot'
 import config from '../config'
-
-const actions = requireAll(`${__dirname}/actions`)
-
-const recastToken = ''
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 })
-
-const token = recastToken || config.recastToken || process.env.TOKEN || process.argv[2]
-
-const bot = new Bot({
-  token,
-  fallbackReplies: {
-    en: ['Aye donte endeurstende'],
-    fr: ['Moi yen a pas comprendre'],
-  },
-})
-
-bot.registerActions(_.values(actions))
 
 <% if (mongo) { %>
 bot.useDatabase(config.database) <% } %>
